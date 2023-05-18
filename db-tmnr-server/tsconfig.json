@@ -1,0 +1,15 @@
+{
+  "ts-node": {
+    "swc": true,
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "nodenext",
+    "outDir": "build",
+    "noEmitOnError": true,
+    "declaration": false,
+    "strict": true
+  }
+}
