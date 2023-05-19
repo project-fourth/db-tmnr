@@ -22,5 +22,11 @@ From the repository root:
 4. Run `npm run build-client` and `npm run preview-client` to build and preview the client respectively.
 5. Run `npm run build-server` and `npm run preview-server` to build and preview the server respectively.
 6. Run `npm run build-all` and `npm run preview-all` to respectively build both the client and server or preview them.
+7. Run `npm run install-client` and `npm run install-server` to install dependencies on the the client and server respectively. Use "--"
+to append packages and/or command line flags to the command. For eg. To execute `npm install -D tailwindcss` on the client, execute the
+command `npm run install-client -- -D tailwindcss`.
+8. Run `npm run on-client` and `npm run on-server` to run arbitrary commands on the the client and server respectively. Use "--"
+to append commands and/or command line flags to the command. For eg. To execute `npx tailwindcss init -p` on the client, execute the
+command `npm run on-client -- npx tailwindcss init -p`.
 
 **Note: Any JS/TS module created in the `src` folder should be imported with the ".js" extension.**

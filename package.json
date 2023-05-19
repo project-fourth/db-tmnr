@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "on-server": "cd db-tmnr-server &&",
+    "on-client": "cd db-tmnr-client &&",
+    "install-server": "cd db-tmnr-server && npm install",
+    "install-client": "cd db-tmnr-client && npm install",
     "install-all": "concurrently \"npm install\" \"cd db-tmnr-server && npm install\" \"cd db-tmnr-client && npm install\"",
     "dev-server": "cd db-tmnr-server && npm run dev",
     "dev-client": "cd db-tmnr-client && npm run dev",
