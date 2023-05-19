@@ -3,13 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev-all": "concurrently \"cd db-tmnr-server && npm run dev\" \"cd db-tmnr-client && npm run dev\"",
     "install-all": "concurrently \"npm install\" \"cd db-tmnr-server && npm install\" \"cd db-tmnr-client && npm install\"",
+    "dev-server": "cd db-tmnr-server && npm run dev",
+    "dev-client": "cd db-tmnr-client && npm run dev",
+    "dev-all": "concurrently \"cd db-tmnr-server && npm run dev\" \"cd db-tmnr-client && npm run dev\"",
     "build-server": "cd db-tmnr-server && npm run build",
-    "preview-server": "cd db-tmnr-server && npm start",
     "build-client": "cd db-tmnr-client && npm run build",
-    "preview-client": "cd db-tmnr-client && npm run preview",
     "build-all": "concurrently \"npm run build-server\" \"npm run build-client\"",
+    "preview-server": "cd db-tmnr-server && npm start",
+    "preview-client": "cd db-tmnr-client && npm run preview",
     "preview-all": "concurrently \"npm run preview-server\" \"npm run preview-client\""
   },
   "devDependencies": {
