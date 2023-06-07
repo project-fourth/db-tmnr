@@ -1,8 +1,10 @@
 import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { z } from "zod";
-import db from "./db.js";
+import mongoose from "mongoose";
 import express from "express";
+import "dotenv/config";
+import db from "./db.js";
 
 const createContext = ({
   req,
@@ -16,22 +18,28 @@ const router = t.router;
 const publicProcedure = t.procedure;
 
 const appRouter = router({
-  userList: publicProcedure.query(() => {
-    const users = db.userList;
+  userList: publicProcedure.query(async () => {
+    const users = await db.User.find();
 
     return users;
   }),
-  userById: publicProcedure.input(z.string()).query((opts) => {
+  userByName: publicProcedure.input(z.string()).query(async (opts) => {
     const { input } = opts;
-    const user = db.userById(input);
+    const user = await db.User.find().where({ name: input });
 
     return user;
   }),
   userCreate: publicProcedure
-    .input(z.object({ id: z.string(), name: z.string(), age: z.number() }))
-    .mutation((opts) => {
+    .input(
+      z.object({
+        name: z.string(),
+        age: z.number(),
+        department: z.string(),
+      })
+    )
+    .mutation(async (opts) => {
       const { input } = opts;
-      const user = db.userCreate(input);
+      const user = await db.User.create(input);
 
       return user;
     }),
@@ -47,6 +55,11 @@ app.use(
   })
 );
 
-app.listen("3000", () => console.log("Server don dey run oo!"));
+async function main() {
+  await mongoose.connect(process.env.DB_CONNECTION_STRING!);
+  app.listen("3000", () => console.log("Server don dey run oo!"));
+}
+
+main().catch((err) => console.log(err));
 
 export type AppRouter = typeof appRouter;

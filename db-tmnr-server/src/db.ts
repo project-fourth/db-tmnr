@@ -1,27 +1,13 @@
-const userList: Record<string, object> = {
-  qred: {
-    name: "Paul",
-    age: 22,
-  },
-  xdtg: {
-    name: "Emma",
-    age: 20,
-  },
-  rdcs: {
-    name: "Audrey",
-    age: 18,
-  },
-};
+import { Schema, model } from "mongoose";
 
-const db = {
-  userList,
-  userById: (id: string) => {
-    return userList[id];
-  },
-  userCreate: (args: { id: string; name: string; age: number }) => {
-    userList[args.id] = { name: args.name, age: args.age };
+const userSchema = new Schema({
+  name: String,
+  age: Number,
+  department: String,
+});
 
-    return userList[args.id];
-  },
-};
+const User = model("User", userSchema);
+
+const db = { User };
+
 export default db;
