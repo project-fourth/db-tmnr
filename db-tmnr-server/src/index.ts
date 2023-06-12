@@ -4,7 +4,8 @@ import { z } from "zod";
 import mongoose from "mongoose";
 import express from "express";
 import "dotenv/config";
-import db from "./db.js";
+import db, { User } from "./db.js";
+import cors from "cors";
 
 const createContext = ({
   req,
@@ -39,13 +40,15 @@ const appRouter = router({
     )
     .mutation(async (opts) => {
       const { input } = opts;
-      const user = await db.User.create(input);
+      const user = await db.User.create<User>(input);
 
       return user;
     }),
 });
 
 const app = express();
+
+app.use(cors());
 
 app.use(
   "/trpc",
