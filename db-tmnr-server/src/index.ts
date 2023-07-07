@@ -41,6 +41,7 @@ const appRouter = router({
     .mutation(async (opts) => {
       const { input } = opts;
       const user = await db.User.create<User>(input);
+
       return user;
     }),
 });

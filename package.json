@@ -20,8 +20,5 @@
   },
   "devDependencies": {
     "concurrently": "^8.0.1"
-  },
-  "dependencies": {
-    "@radix-ui/react-dialog": "^1.0.4"
   }
 }

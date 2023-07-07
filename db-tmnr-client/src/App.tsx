@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import { trpc } from "./utils/trpc";
 import { httpBatchLink } from "@trpc/client";
-import { EditableTable } from "./EditableTable";
+import Table from "./Table";
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -19,8 +19,9 @@ function App() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <h1>Hello there</h1>
-        <EditableTable />
+        <div className="flex w-screen h-screen items-center justify-center">
+          <Table />
+        </div>
       </QueryClientProvider>
     </trpc.Provider>
   );
