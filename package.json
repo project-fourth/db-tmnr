@@ -7,16 +7,16 @@
     "on:client": "cd db-tmnr-client &&",
     "install:server": "cd db-tmnr-server && npm install",
     "install:client": "cd db-tmnr-client && npm install",
-    "install:all": "concurrently \"npm install\" \"npm run install:server\" \"npm run install:client\"",
+    "install": "concurrently \"npm run install:server\" \"npm run install:client\"",
     "dev:server": "cd db-tmnr-server && npm run dev",
     "dev:client": "cd db-tmnr-client && npm run dev",
-    "dev:all": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "build:server": "cd db-tmnr-server && npm run build",
     "build:client": "cd db-tmnr-client && npm run build",
-    "build:all": "concurrently \"npm run build:server\" \"npm run build:client\"",
+    "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
     "preview:server": "cd db-tmnr-server && npm start",
     "preview:client": "cd db-tmnr-client && npm run preview",
-    "preview:all": "concurrently \"npm run preview:server\" \"npm run preview:client\""
+    "preview": "concurrently \"npm run preview:server\" \"npm run preview:client\""
   },
   "devDependencies": {
     "concurrently": "^8.0.1"
