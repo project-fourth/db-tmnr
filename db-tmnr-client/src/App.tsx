@@ -3,6 +3,7 @@ import { useState } from "react";
 import { trpc } from "./utils/trpc";
 import { httpBatchLink } from "@trpc/client";
 import Table from "./Table";
+import NewUserButton from "./NewUserButton";
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -21,6 +22,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <div className="flex w-screen h-screen items-center justify-center">
           <Table />
+          <NewUserButton />
         </div>
       </QueryClientProvider>
     </trpc.Provider>
