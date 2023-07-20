@@ -3,7 +3,7 @@ import { useState } from "react";
 import { trpc } from "./utils/trpc";
 import { httpBatchLink } from "@trpc/client";
 import Table from "./Table";
-import NewUserButton from "./NewUserButton";
+import NewUserButton from "./NewUserDialog";
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
