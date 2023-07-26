@@ -16,7 +16,9 @@
     "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
     "preview:server": "cd db-tmnr-server && npm start",
     "preview:client": "cd db-tmnr-client && npm run preview",
-    "preview": "concurrently \"npm run preview:server\" \"npm run preview:client\""
+    "preview": "concurrently \"npm run preview:server\" \"npm run preview:client\"",
+    "uninstall:server": "cd db-tmnr-server && npm uninstall",
+    "uninstall:client": "cd db-tmnr-client && npm uninstall"
   },
   "devDependencies": {
     "concurrently": "^8.0.1"

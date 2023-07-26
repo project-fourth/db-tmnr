@@ -4,13 +4,15 @@ import { z } from "zod";
 import mongoose from "mongoose";
 import express from "express";
 import "dotenv/config";
-import db, { User } from "./db.js";
+import db, { Member } from "./db.js";
 import cors from "cors";
 
-const createContext = ({
-  req,
-  res,
-}: trpcExpress.CreateExpressContextOptions) => ({});
+const createContext = () =>
+  //   {
+  //   req,
+  //   res,
+  // }: trpcExpress.CreateExpressContextOptions
+  ({});
 
 type Context = inferAsyncReturnType<typeof createContext>;
 
@@ -19,18 +21,12 @@ const router = t.router;
 const publicProcedure = t.procedure;
 
 const appRouter = router({
-  userList: publicProcedure.query(async () => {
-    const users = await db.User.find();
+  getMembers: publicProcedure.query(async () => {
+    const users = await db.Member.find();
 
     return users;
   }),
-  userByName: publicProcedure.input(z.string()).query(async (opts) => {
-    const { input } = opts;
-    const user = await db.User.find().where({ name: input });
-
-    return user;
-  }),
-  userCreate: publicProcedure
+  createMember: publicProcedure
     .input(
       z.object({
         name: z.string(),
@@ -40,9 +36,30 @@ const appRouter = router({
     )
     .mutation(async (opts) => {
       const { input } = opts;
-      const user = await db.User.create<User>(input);
+      const user = await db.Member.create<Omit<Member, "_id">>(input);
 
       return user;
+    }),
+  deleteMember: publicProcedure.input(z.string()).mutation(async (opts) => {
+    const { input } = opts;
+    await db.Member.findByIdAndDelete<Member>(input);
+  }),
+  updateMember: publicProcedure
+    .input(
+      z.object({
+        _id: z.string(),
+        name: z.string(),
+        age: z.number(),
+        department: z.string(),
+      })
+    )
+    .mutation(async (opts) => {
+      const { input } = opts;
+      await db.Member.findByIdAndUpdate<Member>(input._id, {
+        name: input.name,
+        age: input.age,
+        department: input.department,
+      });
     }),
 });
 

@@ -1,12 +1,13 @@
 import { Schema, model, Model } from "mongoose";
 
-export interface User {
+export interface Member {
+  _id: string;
   name: string;
   age: number;
   department: string;
 }
 
-const userSchema = new Schema<User>({
+const memberSchema = new Schema<Member>({
   name: {
     type: String,
     required: true,
@@ -21,8 +22,14 @@ const userSchema = new Schema<User>({
   },
 });
 
-const User = model("User", userSchema) as Model<User, {}, {}, {}, User>;
+const Member = model("Member", memberSchema) as Model<
+  Member,
+  {},
+  {},
+  {},
+  Member
+>;
 
-const db = { User };
+const db = { Member };
 
 export default db;
